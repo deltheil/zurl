@@ -1,0 +1,11 @@
+zurl - URL transfer w/ on-the-fly client-side compression
+
+Sample code that illustrates how to combine libcurl with client-side, on-the-fly
+zlib compression[1].
+
+It could be handy to save space on the client if server-side HTTP compression
+is not available.
+
+[1]: http://stackoverflow.com/q/15632005/1688185
+
+Copyright (c) 2013 Cédric Deltheil. MIT Licensed.
