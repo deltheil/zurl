@@ -24,7 +24,7 @@ static int stream_open(struct stream *s, int level);
 static int stream_close(struct stream *s);
 static void stream_del(struct stream *s);
 static size_t stream_deflate(struct stream *s, int flush);
-static void stream_cp(struct stream *s, char *buf, size_t size);
+static void stream_consume(struct stream *s, const char *buf, size_t size);
 static size_t write_cb(char *ptr, size_t size, size_t nmemb, void *opq);
 
 int
@@ -126,7 +126,7 @@ err:
 }
 
 static void
-stream_cp(struct stream *s, char *buf, size_t size)
+stream_consume(struct stream *s, const char *buf, size_t size)
 {
   s->size = size;
   s->buf = realloc(s->buf, size);
@@ -139,6 +139,6 @@ write_cb(char *ptr, size_t size, size_t nmemb, void *opq)
   size_t len = size * nmemb;
   struct stream *s = (struct stream *) opq;
   if (s->buf) stream_deflate(s, Z_NO_FLUSH);
-  stream_cp(s, ptr, len);
+  stream_consume(s, ptr, len);
   return len;
 }
