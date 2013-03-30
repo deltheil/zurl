@@ -6,6 +6,10 @@ zlib compression[1].
 It could be handy to save space on the client if server-side HTTP compression
 is not available.
 
+Otherwise it's simpler to accept encoding (`Accept-Encoding: gzip, deflate`)
+while taking care to turn off decoding[2] on libcurl side.
+
 [1]: http://stackoverflow.com/q/15632005/1688185
+[2]: http://curl.haxx.se/mail/lib-2013-02/0241.html
 
 Copyright (c) 2013 Cédric Deltheil. MIT Licensed.

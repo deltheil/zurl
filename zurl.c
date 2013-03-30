@@ -53,9 +53,9 @@ main(void)
     fprintf(stderr, "error: stream is invalid\n");
 
   curl_easy_cleanup(curl);
+  curl_global_cleanup();
 
   stream_del(s);
-  curl_global_cleanup();
 
   return 0;
 }
